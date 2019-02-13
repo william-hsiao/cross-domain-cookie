@@ -5,17 +5,14 @@
   </head>
   <script>
     window.addEventListener('message', event => {
-      try {
-        const payload = JSON.parse(event.data);
-        if (!!payload.cdcMessage) {
-          delete payload.cdcMessage;
-          const url = "http://localhost:3001";
-          const xhr = new XMLHttpRequest();
-          xhr.open("POST", url, true);
-          xhr.setRequestHeader("Content-Type", "application/json");
-          xhr.send(JSON.stringify(payload));
-        }
-      } catch (e) {}
+      if (event.origin === 'http://localhost:3001' && !!event.data.cdcMessage) {
+        delete event.data.cdcMessage;
+        const url = "http://localhost:3001";
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(JSON.stringify(event.data));
+      }
     }, false);
   </script>
 

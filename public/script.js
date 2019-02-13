@@ -11,5 +11,5 @@ cdc.initSender = () => {
 cdc.send = payload => {
   payload.cdcMessage = true;
   const frame = document.getElementById('cross-domain-iframe');
-  frame.contentWindow.postMessage(JSON.stringify(payload), "http://localhost:3001");
+  frame.contentWindow.postMessage(payload, "http://localhost:3001");
 }
