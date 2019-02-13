@@ -3,7 +3,21 @@
   <head>
     <title>Cross-domain cookie test</title>
   </head>
-  <script src="http://localhost:3001/script.js"></script>
+  <script>
+    window.addEventListener('message', event => {
+      try {
+        const payload = JSON.parse(event.data);
+        if (!!payload.cdcMessage) {
+          delete payload.cdcMessage;
+          const url = "http://localhost:3001";
+          const xhr = new XMLHttpRequest();
+          xhr.open("POST", url, true);
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.send(JSON.stringify(payload));
+        }
+      } catch (e) {}
+    }, false);
+  </script>
 
   <body>
     <h1> Cross-domain cookie test </h1>

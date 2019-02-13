@@ -8,10 +8,10 @@ This will start an express server. On a website hosted across http, run the foll
 ```js
 const cdcScript = document.createElement('script');
 cdcScript.setAttribute("src", "http://localhost:3001/script.js");
+cdcScript.onload = () => cdc.initSender();
 document.body.appendChild(cdcScript);
-cdc.initSender();
 ```
 
-To send a message, use `cdc.send( STRINGIFIED JSON OBJECT )`
+To send a message, use `cdc.send( { JSON OBJECT } )`
 
 The message will be logged in your terminal.
