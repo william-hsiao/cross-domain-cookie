@@ -7,7 +7,7 @@ This will start an express server. On a website hosted across http, run the foll
 
 ```js
 const cdcScript = document.createElement('script');
-cdcScript.setAttribute("src", "http://localhost:3001/script.js");
+cdcScript.setAttribute("src", "http://localhost:3001/sender.js");
 cdcScript.onload = () => cdc.initSender();
 document.body.appendChild(cdcScript);
 ```
